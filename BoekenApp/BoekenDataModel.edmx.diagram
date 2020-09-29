@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e92f452bb4bb475fbc2cd8b60c006bee" Name="Diagram1">
+        <EntityTypeShape EntityType="BoekenModel.Auteurs" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoekenModel.Boeken" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoekenModel.BoekenAuteurs" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoekenModel.BoekenGenres" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoekenModel.Genres" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoekenModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoekenModel.Uitgeverijen" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <AssociationConnector Association="BoekenModel.FK_BoekenAuteurs_Auteurs" ManuallyRouted="false" />
+        <AssociationConnector Association="BoekenModel.FK_Boeken_Uitgeverijen" ManuallyRouted="false" />
+        <AssociationConnector Association="BoekenModel.FK_BoekenAuteurs_Boeken" ManuallyRouted="false" />
+        <AssociationConnector Association="BoekenModel.FK_BoekenGenres_Boeken" ManuallyRouted="false" />
+        <AssociationConnector Association="BoekenModel.FK_BoekenGenres_Genres" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
