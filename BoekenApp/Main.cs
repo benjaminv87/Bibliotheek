@@ -85,42 +85,89 @@ namespace BoekenApp
             }
         }
 
+        private void btnVerwijderen_Click(object sender, EventArgs e)
+        {
+            var categorie = cbCategorie.SelectedItem.ToString();
+            var selectedID = (int)lbBoeken.SelectedValue;
+            using (BoekenEntities ctx = new BoekenEntities())
+            {               
+                switch (categorie)
+                {
+                    case "Boeken":
+                        var boek = ctx.Boeken.Where(b => b.Id == selectedID).FirstOrDefault();
+                        if (MessageBox.Show($"Ben je zeker dat je {boek.Titel} wil verwijderen?", "Verwijderen", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        {
+                            ctx.BoekenAuteurs.RemoveRange(ctx.BoekenAuteurs.Where(b => b.BoekId == boek.Id));
+                            ctx.BoekenGenres.RemoveRange(ctx.BoekenGenres.Where(b => b.BoekId == boek.Id));
+                            ctx.Boeken.Remove(boek);
+                        }
+                        break;
+                    case "Auteurs":
+                        var auteur = ctx.Auteurs.Where(a => a.Id == selectedID).FirstOrDefault();
+                        if (MessageBox.Show($"Ben je zeker dat je {auteur.Voornaam} {auteur.Achternaam} wil verwijderen", "Verwijderen", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        {
+                            ctx.BoekenAuteurs.RemoveRange(ctx.BoekenAuteurs.Where(a => a.AuteurId == auteur.Id));
+                            ctx.Auteurs.Remove(auteur);
+                        }
+                        break;
+                    case "Genres":
+                        var genre = ctx.Genres.Where(g => g.Id == selectedID).FirstOrDefault();
+                        if (MessageBox.Show($"Ben je zeker dat je het genre: {genre.Genre} wil verwijderen?", "Verwijderen", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        {
+                            ctx.BoekenGenres.RemoveRange(ctx.BoekenGenres.Where(g => g.Id == genre.Id));
+                            ctx.Genres.Remove(genre);
+                        }
+                        break;
+                    case "Uitgeverij":
+                        var uitgeverij = ctx.Uitgeverijen.Where(u => u.Id == selectedID).FirstOrDefault();
+                        if (MessageBox.Show($"Ben je zeker dat je de uitgeverij: {uitgeverij.Naam} en al zijn uitgebrachte boeken wil verwijderen?", "Verwijderen", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        {
+                            ctx.Boeken.RemoveRange(ctx.Boeken.Where(b => b.UitgeverId == uitgeverij.Id));
+                            ctx.Uitgeverijen.Remove(uitgeverij);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                ctx.SaveChanges();
+                updateLB(categorie);
+            }
+        }
         // METHODES
         private void LaadInfo()
         {
             var categorie = cbCategorie.SelectedItem.ToString();
             var selectedID = (int)lbBoeken.SelectedValue;
-            switch (categorie)
+            using (BoekenEntities ctx = new BoekenEntities())
             {
-                case "Boeken":
-                    using (BoekenEntities ctx = new BoekenEntities())
-                    {
+                switch (categorie)
+                {
+                    case "Boeken":
+
                         FormBoekenInfo checkInfo = new FormBoekenInfo();
                         checkInfo.MijnBoekID = selectedID;
                         checkInfo.ShowDialog();
-                    }
-                    break;
-                case "Auteurs":
-                    using (BoekenEntities ctx = new BoekenEntities())
-                    {
+
+                        break;
+                    case "Auteurs":
+
                         MessageBox.Show("Auteurs Info");
-                    }
-                    break;
-                case "Genres":
-                    using (BoekenEntities ctx = new BoekenEntities())
-                    {
+
+                        break;
+                    case "Genres":
+
                         MessageBox.Show("Genre Info");
 
-                    }
-                    break;
-                case "Uitgeverij":
-                    using (BoekenEntities ctx = new BoekenEntities())
-                    {
+
+                        break;
+                    case "Uitgeverij":
+
                         MessageBox.Show($"Uitgeverij Info: {ctx.Uitgeverijen.Where(p => p.Id == selectedID).Select(p => p.Naam).FirstOrDefault()}");
-                    }
-                    break;
-                default:
-                    break;
+
+                        break;
+                    default:
+                        break;
+                }
             }
         }
         public void updateLB(string categorie)
@@ -169,6 +216,5 @@ namespace BoekenApp
             }
 
         }
-
     }
 }

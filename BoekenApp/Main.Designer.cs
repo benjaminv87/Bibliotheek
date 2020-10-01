@@ -35,6 +35,7 @@
             this.btnGenreToevoegen = new System.Windows.Forms.Button();
             this.btnNieuweUitgeverij = new System.Windows.Forms.Button();
             this.cbCategorie = new System.Windows.Forms.ComboBox();
+            this.btnVerwijderen = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbBoeken
@@ -117,11 +118,22 @@
             this.cbCategorie.TabIndex = 6;
             this.cbCategorie.SelectedIndexChanged += new System.EventHandler(this.cbCategorie_SelectedIndexChanged);
             // 
+            // btnVerwijderen
+            // 
+            this.btnVerwijderen.Location = new System.Drawing.Point(253, 41);
+            this.btnVerwijderen.Name = "btnVerwijderen";
+            this.btnVerwijderen.Size = new System.Drawing.Size(127, 23);
+            this.btnVerwijderen.TabIndex = 7;
+            this.btnVerwijderen.Text = "Verwijderen";
+            this.btnVerwijderen.UseVisualStyleBackColor = true;
+            this.btnVerwijderen.Click += new System.EventHandler(this.btnVerwijderen_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(394, 336);
+            this.Controls.Add(this.btnVerwijderen);
             this.Controls.Add(this.cbCategorie);
             this.Controls.Add(this.btnNieuweUitgeverij);
             this.Controls.Add(this.btnGenreToevoegen);
@@ -147,6 +159,7 @@
         private System.Windows.Forms.Button btnGenreToevoegen;
         private System.Windows.Forms.Button btnNieuweUitgeverij;
         private System.Windows.Forms.ComboBox cbCategorie;
+        private System.Windows.Forms.Button btnVerwijderen;
     }
 }
 
