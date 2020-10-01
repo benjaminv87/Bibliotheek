@@ -21,18 +21,108 @@ namespace BoekenApp
         {
             List<string> categories = new List<string>() { "Boeken", "Auteurs", "Genres", "Uitgeverij" };
             cbCategorie.DataSource = categories;
-            updateLB(cbCategorie.SelectedItem as string) ;
+            updateLB(cbCategorie.SelectedItem as string);
         }
 
+        // EVENT HANDLERS
         private void btnInfo_Click(object sender, EventArgs e)
         {
-            var selectedBookID = (int)lbBoeken.SelectedValue;
-            FormBoekenInfo checkInfo = new FormBoekenInfo();
-            checkInfo.MijnBoekID= selectedBookID;
-            checkInfo.ShowDialog();
-          
+            LaadInfo();
+
         }
 
+        private void btnBoekToevoegen_Click(object sender, EventArgs e)
+        {
+            NewBoek formNewBoek = new NewBoek();
+            if (formNewBoek.ShowDialog() == DialogResult.OK)
+            {
+                MessageBox.Show($"{formNewBoek.nieuwBoek.Titel} toegevoegd.");
+                updateLB("Boeken");
+            }
+        }
+
+        private void cbCategorie_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            updateLB(cbCategorie.SelectedItem as string);
+        }
+
+        private void lbBoeken_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            LaadInfo();
+        }
+
+        private void btnNieuweUitgeverij_Click(object sender, EventArgs e)
+        {
+            NewUitgeverij newUitgeverijFrom = new NewUitgeverij();
+            if (newUitgeverijFrom.ShowDialog() == DialogResult.OK)
+            {
+                updateLB("Uitgeverij");
+                cbCategorie.SelectedItem = "Uitgeverij";
+                MessageBox.Show($"{newUitgeverijFrom.nieuweUitgeverij.Naam} toegevoegd.");
+            }
+        }
+
+        private void btnAuteurToevoegen_Click(object sender, EventArgs e)
+        {
+            NewAuteur newAuteurForm = new NewAuteur();
+            if (newAuteurForm.ShowDialog() == DialogResult.OK)
+            {
+                updateLB("Auteur");
+                cbCategorie.SelectedItem = "Auteur";
+                MessageBox.Show($"{newAuteurForm.nieuweAuteur.Voornaam} {newAuteurForm.nieuweAuteur.Achternaam} toegevoegd.");
+
+            }
+        }
+
+        private void btnGenreToevoegen_Click(object sender, EventArgs e)
+        {
+            newGenre newGenreForm = new newGenre();
+            if (newGenreForm.ShowDialog() == DialogResult.OK)
+            {
+                updateLB("Genre");
+                cbCategorie.SelectedItem = "Genre";
+                MessageBox.Show($"{newGenreForm.nieuwGenre.Genre} Toegevoegd.");
+            }
+        }
+
+        // METHODES
+        private void LaadInfo()
+        {
+            var categorie = cbCategorie.SelectedItem.ToString();
+            var selectedID = (int)lbBoeken.SelectedValue;
+            switch (categorie)
+            {
+                case "Boeken":
+                    using (BoekenEntities ctx = new BoekenEntities())
+                    {
+                        FormBoekenInfo checkInfo = new FormBoekenInfo();
+                        checkInfo.MijnBoekID = selectedID;
+                        checkInfo.ShowDialog();
+                    }
+                    break;
+                case "Auteurs":
+                    using (BoekenEntities ctx = new BoekenEntities())
+                    {
+                        MessageBox.Show("Auteurs Info");
+                    }
+                    break;
+                case "Genres":
+                    using (BoekenEntities ctx = new BoekenEntities())
+                    {
+                        MessageBox.Show("Genre Info");
+
+                    }
+                    break;
+                case "Uitgeverij":
+                    using (BoekenEntities ctx = new BoekenEntities())
+                    {
+                        MessageBox.Show($"Uitgeverij Info: {ctx.Uitgeverijen.Where(p => p.Id == selectedID).Select(p => p.Naam).FirstOrDefault()}");
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
         public void updateLB(string categorie)
         {
             switch (categorie)
@@ -80,25 +170,5 @@ namespace BoekenApp
 
         }
 
-        private void btnBoekToevoegen_Click(object sender, EventArgs e)
-        {
-            NewBoek formNewBoek = new NewBoek();
-            if (formNewBoek.ShowDialog() == DialogResult.OK)
-            {
-                Boeken newBoek = formNewBoek.nieuwBoek;
-                using (BoekenEntities ctx = new BoekenEntities())
-                {
-                    ctx.Boeken.Add(newBoek);
-                    ctx.SaveChanges();
-                }
-                MessageBox.Show($"{newBoek.Titel} toegevoegd.");
-            }
-        }
-
-        private void cbCategorie_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            updateLB(cbCategorie.SelectedItem as string);
-
-        }
     }
 }

@@ -20,21 +20,20 @@ namespace BoekenApp
 
         private void BoekenInfo_Load(object sender, EventArgs e)
         {
-            using(BoekenEntities ctx= new BoekenEntities())
+            using (BoekenEntities ctx = new BoekenEntities())
             {
                 Boeken MijnBoek = ctx.Boeken.Where(b => b.Id == MijnBoekID).FirstOrDefault();
-                //BoekenAuteurs auteurID = ctx.BoekenAuteurs.Where(ba => ba.BoekId == MijnBoekID).FirstOrDefault();
-                //Auteurs auteur = ctx.Auteurs.Where(a => a.Id == auteurID.AuteurId).FirstOrDefault();
                 Uitgeverijen uitgeverij = ctx.Uitgeverijen.Where(u => u.Id == MijnBoek.UitgeverId).FirstOrDefault();
-                var genreLijst = ctx.BoekenGenres.Where(bg=>bg.BoekId==MijnBoek.Id).Join(ctx.Genres,
+
+                var genreLijst = ctx.BoekenGenres.Where(bg => bg.BoekId == MijnBoek.Id).Join(ctx.Genres,
                     gl => gl.GenreId,
                     g => g.Id,
                     (gl, g) => new { g.Genre }).ToList();
 
-                var auteurLijst = ctx.BoekenAuteurs.Where(ba=>ba.BoekId==MijnBoekID).Join(ctx.Auteurs,
+                var auteurLijst = ctx.BoekenAuteurs.Where(ba => ba.BoekId == MijnBoekID).Join(ctx.Auteurs,
                     ba => ba.AuteurId,
                     a => a.Id,
-                    (ba, a) => new { Naam =a.Voornaam+ " " + a.Achternaam }).ToList();
+                    (ba, a) => new { Naam = a.Voornaam + " " + a.Achternaam }).ToList();
 
                 lblTitel.Text = MijnBoek.Titel;
                 lblPaginas.Text = MijnBoek.AantalPaginas.ToString();

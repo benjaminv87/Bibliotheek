@@ -10,31 +10,28 @@ using System.Windows.Forms;
 
 namespace BoekenApp
 {
-    public partial class NewAuteur : Form
+    public partial class newGenre : Form
     {
-        public NewAuteur()
+        public newGenre()
         {
             InitializeComponent();
         }
-
-        public Auteurs nieuweAuteur = new Auteurs();
+        public Genres nieuwGenre = new Genres();
         private void btnToevoegen_Click(object sender, EventArgs e)
         {
-            nieuweAuteur.Voornaam = tbVoornaam.Text;
-            nieuweAuteur.Achternaam = tbAchternaam.Text;
-            using(BoekenEntities ctx = new BoekenEntities())
+            nieuwGenre.Genre = tbNaam.Text;
+            using (BoekenEntities ctx = new BoekenEntities())
             {
-                ctx.Auteurs.Add(nieuweAuteur);
-                ctx.SaveChanges();
+                ctx.Genres.Add(nieuwGenre);
             }
             DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private void btnAnnuleren_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
-
+            this.Close();
         }
-
     }
 }

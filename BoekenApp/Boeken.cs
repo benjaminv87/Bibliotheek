@@ -18,6 +18,7 @@ namespace BoekenApp
         public Boeken()
         {
             this.BoekenAuteurs = new HashSet<BoekenAuteurs>();
+            this.BoekenGenres = new HashSet<BoekenGenres>();
         }
     
         public int Id { get; set; }
@@ -30,6 +31,7 @@ namespace BoekenApp
         public virtual Uitgeverijen Uitgeverijen { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BoekenAuteurs> BoekenAuteurs { get; set; }
-        public virtual BoekenGenres BoekenGenres { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BoekenGenres> BoekenGenres { get; set; }
     }
 }

@@ -16,5 +16,26 @@ namespace BoekenApp
         {
             InitializeComponent();
         }
+
+        public Uitgeverijen nieuweUitgeverij = new Uitgeverijen();
+
+        //EVENT HANDLERS
+        private void btnToevoegen_Click(object sender, EventArgs e)
+        {
+            nieuweUitgeverij.Naam = tbNaam.Text;
+            using (BoekenEntities ctx = new BoekenEntities())
+            {
+                ctx.Uitgeverijen.Add(nieuweUitgeverij);
+                ctx.SaveChanges();
+            }
+            DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private void btnAnnuleren_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
     }
 }

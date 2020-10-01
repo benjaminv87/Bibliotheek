@@ -43,6 +43,9 @@
             this.cbUitgeverij = new System.Windows.Forms.ComboBox();
             this.dtPublicatieDatum = new System.Windows.Forms.DateTimePicker();
             this.btnBoekToevoegen = new System.Windows.Forms.Button();
+            this.btnUitgeverijToevoegen = new System.Windows.Forms.Button();
+            this.btnNieuweAuteur = new System.Windows.Forms.Button();
+            this.btnNieuwGenre = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numAantalPaginas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numScore)).BeginInit();
             this.SuspendLayout();
@@ -54,7 +57,7 @@
             this.lbAuteurs.Name = "lbAuteurs";
             this.lbAuteurs.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbAuteurs.Size = new System.Drawing.Size(140, 160);
-            this.lbAuteurs.TabIndex = 0;
+            this.lbAuteurs.TabIndex = 7;
             // 
             // lbGenres
             // 
@@ -63,7 +66,7 @@
             this.lbGenres.Name = "lbGenres";
             this.lbGenres.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbGenres.Size = new System.Drawing.Size(148, 160);
-            this.lbGenres.TabIndex = 1;
+            this.lbGenres.TabIndex = 9;
             // 
             // label1
             // 
@@ -133,21 +136,21 @@
             this.tbTitel.Location = new System.Drawing.Point(105, 6);
             this.tbTitel.Name = "tbTitel";
             this.tbTitel.Size = new System.Drawing.Size(201, 20);
-            this.tbTitel.TabIndex = 26;
+            this.tbTitel.TabIndex = 1;
             // 
             // numAantalPaginas
             // 
             this.numAantalPaginas.Location = new System.Drawing.Point(106, 32);
             this.numAantalPaginas.Name = "numAantalPaginas";
             this.numAantalPaginas.Size = new System.Drawing.Size(46, 20);
-            this.numAantalPaginas.TabIndex = 27;
+            this.numAantalPaginas.TabIndex = 2;
             // 
             // numScore
             // 
             this.numScore.Location = new System.Drawing.Point(260, 32);
             this.numScore.Name = "numScore";
             this.numScore.Size = new System.Drawing.Size(46, 20);
-            this.numScore.TabIndex = 28;
+            this.numScore.TabIndex = 3;
             // 
             // cbUitgeverij
             // 
@@ -155,31 +158,65 @@
             this.cbUitgeverij.FormattingEnabled = true;
             this.cbUitgeverij.Location = new System.Drawing.Point(106, 89);
             this.cbUitgeverij.Name = "cbUitgeverij";
-            this.cbUitgeverij.Size = new System.Drawing.Size(201, 21);
-            this.cbUitgeverij.TabIndex = 29;
+            this.cbUitgeverij.Size = new System.Drawing.Size(162, 21);
+            this.cbUitgeverij.TabIndex = 5;
             // 
             // dtPublicatieDatum
             // 
             this.dtPublicatieDatum.Location = new System.Drawing.Point(105, 58);
             this.dtPublicatieDatum.Name = "dtPublicatieDatum";
             this.dtPublicatieDatum.Size = new System.Drawing.Size(200, 20);
-            this.dtPublicatieDatum.TabIndex = 30;
+            this.dtPublicatieDatum.TabIndex = 4;
             // 
             // btnBoekToevoegen
             // 
-            this.btnBoekToevoegen.Location = new System.Drawing.Point(11, 303);
+            this.btnBoekToevoegen.Location = new System.Drawing.Point(11, 332);
             this.btnBoekToevoegen.Name = "btnBoekToevoegen";
             this.btnBoekToevoegen.Size = new System.Drawing.Size(294, 23);
-            this.btnBoekToevoegen.TabIndex = 31;
+            this.btnBoekToevoegen.TabIndex = 11;
             this.btnBoekToevoegen.Text = "Boek toevoegen";
             this.btnBoekToevoegen.UseVisualStyleBackColor = true;
             this.btnBoekToevoegen.Click += new System.EventHandler(this.btnBoekToevoegen_Click);
             // 
+            // btnUitgeverijToevoegen
+            // 
+            this.btnUitgeverijToevoegen.Location = new System.Drawing.Point(274, 89);
+            this.btnUitgeverijToevoegen.Name = "btnUitgeverijToevoegen";
+            this.btnUitgeverijToevoegen.Size = new System.Drawing.Size(31, 21);
+            this.btnUitgeverijToevoegen.TabIndex = 6;
+            this.btnUitgeverijToevoegen.Text = "+";
+            this.btnUitgeverijToevoegen.UseVisualStyleBackColor = true;
+            this.btnUitgeverijToevoegen.Click += new System.EventHandler(this.btnUitgeverijToevoegen_Click);
+            // 
+            // btnNieuweAuteur
+            // 
+            this.btnNieuweAuteur.Location = new System.Drawing.Point(12, 302);
+            this.btnNieuweAuteur.Name = "btnNieuweAuteur";
+            this.btnNieuweAuteur.Size = new System.Drawing.Size(141, 21);
+            this.btnNieuweAuteur.TabIndex = 8;
+            this.btnNieuweAuteur.Text = "+";
+            this.btnNieuweAuteur.UseVisualStyleBackColor = true;
+            this.btnNieuweAuteur.Click += new System.EventHandler(this.btnNieuweAuteur_Click);
+            // 
+            // btnNieuwGenre
+            // 
+            this.btnNieuwGenre.Location = new System.Drawing.Point(158, 302);
+            this.btnNieuwGenre.Name = "btnNieuwGenre";
+            this.btnNieuwGenre.Size = new System.Drawing.Size(147, 21);
+            this.btnNieuwGenre.TabIndex = 10;
+            this.btnNieuwGenre.Text = "+";
+            this.btnNieuwGenre.UseVisualStyleBackColor = true;
+            this.btnNieuwGenre.Click += new System.EventHandler(this.btnNieuwGenre_Click);
+            // 
             // NewBoek
             // 
+            this.AcceptButton = this.btnBoekToevoegen;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(322, 338);
+            this.ClientSize = new System.Drawing.Size(320, 367);
+            this.Controls.Add(this.btnNieuwGenre);
+            this.Controls.Add(this.btnNieuweAuteur);
+            this.Controls.Add(this.btnUitgeverijToevoegen);
             this.Controls.Add(this.btnBoekToevoegen);
             this.Controls.Add(this.dtPublicatieDatum);
             this.Controls.Add(this.cbUitgeverij);
@@ -196,7 +233,7 @@
             this.Controls.Add(this.lbGenres);
             this.Controls.Add(this.lbAuteurs);
             this.Name = "NewBoek";
-            this.Text = "NewBoek";
+            this.Text = "Boek toevoegen";
             this.Load += new System.EventHandler(this.NewBoek_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numAantalPaginas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numScore)).EndInit();
@@ -222,5 +259,8 @@
         private System.Windows.Forms.ComboBox cbUitgeverij;
         private System.Windows.Forms.DateTimePicker dtPublicatieDatum;
         private System.Windows.Forms.Button btnBoekToevoegen;
+        private System.Windows.Forms.Button btnUitgeverijToevoegen;
+        private System.Windows.Forms.Button btnNieuweAuteur;
+        private System.Windows.Forms.Button btnNieuwGenre;
     }
 }
